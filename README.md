@@ -1,6 +1,6 @@
 # 📱 Guia Motéis
 
-Aplicativo desenvolvido para listar e exibir informações sobre motéis, com funcionalidades de filtros e seleção de datas.
+Aplicativo desenvolvido para listar e exibir informações sobre motéis.
 
 ## 🛠️ Tecnologias Utilizadas
 
