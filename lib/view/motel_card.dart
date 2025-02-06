@@ -12,11 +12,7 @@ class MotelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white, // Fundo branco garantido
-      elevation: 3,
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    return Container(
       child: _buildSuitesCarousel(context),
     );
   }
@@ -30,7 +26,7 @@ class MotelCard extends StatelessWidget {
     }
 
     return SizedBox(
-      height: 550,
+      height: 600,
       child: PageView.builder(
         itemCount: motel.suites.length,
         itemBuilder: (context, index) {
@@ -68,11 +64,11 @@ class MotelCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: Center(
                 child: Text(
                   suite.nome,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                 ),
               ),
             ),
@@ -84,20 +80,25 @@ class MotelCard extends StatelessWidget {
 
   Widget _buildCategoriaItems(BuildContext context, Suite suite) {
     final categorias = suite.categorias;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          ...categorias.take(4).map((categoria) => _buildIconItem(categoria)),
-          GestureDetector(
-            onTap: () => _showBottomSheet(context, categorias, suite.itens, suite.nome),
-            child: const Padding(
-              padding: EdgeInsets.only(left: 8.0),
-              child: Text("Ver todos", style: TextStyle(color: Colors.red)),
-            ),
-          )
-        ],
+    return Card(
+      color: Colors.white,
+      elevation: 3,
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ...categorias.take(4).map((categoria) => _buildIconItem(categoria)),
+            GestureDetector(
+              onTap: () => _showBottomSheet(context, categorias, suite.itens, suite.nome),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Text("Ver todos", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

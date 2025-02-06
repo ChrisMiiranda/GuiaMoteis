@@ -84,7 +84,19 @@ class _HomeScreenState extends State<HomeScreen> {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
-            _buildFilterChip("Filtros"),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Chip(
+                label: Row(
+                  children: [
+                    Icon(Icons.tune, size: 15,),
+                    SizedBox(width: 10,),
+                    Text("Filtros"),
+                  ],
+                ),
+                backgroundColor: Colors.white,
+              ),
+            ),
             _buildFilterChip("Café da Manhã"),
             _buildFilterChip("Decoração / Experiências"),
           ],
@@ -98,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.only(right: 8.0),
       child: Chip(
         label: Text(label),
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.white,
       ),
     );
   }
