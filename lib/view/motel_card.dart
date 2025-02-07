@@ -12,8 +12,58 @@ class MotelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: _buildSuitesCarousel(context),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildMotelInfo(),
+        _buildSuitesCarousel(context),
+      ],
+    );
+  }
+
+  Widget _buildMotelInfo() {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              ClipOval(
+                child: Image.network(
+                  motel.imagem,
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      motel.nome,
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "${motel.distancia} - ${motel.bairro}",
+                      style: const TextStyle(fontSize: 14, color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  const Icon(Icons.star, color: Colors.amber, size: 18),
+                  Text("${motel.mediaAvaliacao} (${motel.qtdAvaliacoes})")
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+        ],
+      ),
     );
   }
 
@@ -46,8 +96,8 @@ class MotelCard extends StatelessWidget {
 
   Widget _buildSuiteCard(Suite suite) {
     return Card(
-      color: Colors.white, // Fundo branco garantido
-      elevation: 3, // Destacar do fundo
+      color: Colors.white,
+      elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
@@ -123,7 +173,7 @@ class MotelCard extends StatelessWidget {
           child: SingleChildScrollView(
             physics: ClampingScrollPhysics(),
             child: Column(
-              mainAxisSize: MainAxisSize.min, // Use min para evitar overflow
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   suiteNome,
